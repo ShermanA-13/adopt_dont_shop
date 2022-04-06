@@ -4,10 +4,10 @@ class Admin::ApplicationsController < ApplicationController
   end
 
   def update
-    @application = PetApplication.Application.find(params[:id])
-    @application.approved
-    redirect_to "/admin/applications/#{@application.id}"
+    @pet_application = PetApplication.find(params[:id])
+    @pet_application.approved
+    redirect_to "/admin/applications/#{@pet_application.application.id}"
   end
 
-  
+
 end

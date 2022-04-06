@@ -16,7 +16,4 @@ class Application < ApplicationRecord
     update({ status: 'Pending' })
   end
 
-  def approved
-    update({ status: 'Approved' })
-  end
 end

@@ -9,4 +9,11 @@ class PetApplicationsController < ApplicationController
   def pet_application_params
     params.permit(:application_id, :pet_id)
   end
+
+  it 'updates status to approved' do
+    @application1.update_status_pending
+    expect(@application1.status).to eq('Pending')
+    @application1.approved
+    expect(@application1.status).to eq('Approved')
+  end
 end

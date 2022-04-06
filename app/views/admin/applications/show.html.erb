@@ -1,6 +1,6 @@
 <h1>Pending Applications</h1>
   <% @application.pets.each do |pet| %>
-  <%binding.pry %>
+
     <% if @application.status == "Pending" %>
     <%= "#{pet.name}" %>
     <%= button_to "Approve #{pet.name}", "/admin/applications/#{@application.id}", method: :patch %>
