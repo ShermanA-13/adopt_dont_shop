@@ -51,4 +51,15 @@ RSpec.describe 'admin::application#show page' do
     expect(page).to_not have_button("Deny #{@pet_3.name}")
     expect(page).to have_content("Denied Pets: #{@pet_3.name}")
   end
+
+  it 'approved or denied pets on one application do not affect another application' do
+    click_button "Approve #{@pet_1.name}"
+    expect(page).to have_content("Approved Pets: #{@pet_1.name}")
+    visit "/admin/applications/#{@application2.id}"
+    save_and_open_page
+    expect(page).to have_button("Approve #{@pet_5.name}")
+    expect(page).to have_button("Deny #{@pet_5.name}")
+    expect(page).to_not have_button("Approve #{@pet_1.name}")
+    expect(page).to_not have_content("Approved pets: #{@pet_1.name}")
+  end
 end
