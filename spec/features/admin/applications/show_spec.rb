@@ -27,9 +27,9 @@ RSpec.describe 'admin::application#show page' do
     @pet_4 = @shelter_1.pets.create(name: 'Ann', breed: 'ragdoll', age: 5, adoptable: true)
     @pet_5 = @shelter_2.pets.create(name: 'Clawdias', breed: 'shorthair', age: 3, adoptable: true)
 
-    PetApplication.create!(pet_id: @pet_1.id, application_id: @application1.id)
-    PetApplication.create!(pet_id: @pet_3.id, application_id: @application1.id)
-    PetApplication.create!(pet_id: @pet_5.id, application_id: @application2.id)
+    @pet_app_1 = PetApplication.create!(pet_id: @pet_1.id, application_id: @application1.id)
+    @pet_app_2 = PetApplication.create!(pet_id: @pet_3.id, application_id: @application1.id)
+    @pet_app_3 = PetApplication.create!(pet_id: @pet_5.id, application_id: @application2.id)
 
     visit "/admin/applications/#{@application1.id}"
   end
@@ -39,8 +39,8 @@ RSpec.describe 'admin::application#show page' do
     expect(page).to have_button("Approve #{@pet_3.name}")
     expect(page).to_not have_button("Approve #{@pet_5.name}")
     click_button "Approve #{@pet_1.name}"
-    expect(page).to have_current_path("/admin/applications/#{@application1.id}")
-    expect(page).to have_content("#{@pet_1.name} Approved ")
-    expect(page).to_not have_button("Approve #{@pet1.name}")
+    expect(current_path).to eq("/admin/applications/#{@application1.id}")
+    expect(page).to_not have_button("Approve #{@pet_1.name}")
+    expect(page).to have_content("Approved Pets: #{@pet_1.name}")
   end
 end
