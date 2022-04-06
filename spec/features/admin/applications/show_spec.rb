@@ -38,11 +38,9 @@ RSpec.describe 'admin::application#show page' do
     expect(page).to have_button("Approve #{@pet_1.name}")
     expect(page).to have_button("Approve #{@pet_3.name}")
     expect(page).to_not have_button("Approve #{@pet_5.name}")
-
-    save_and_open_page
     click_button "Approve #{@pet_1.name}"
-    save_and_open_page
     expect(page).to have_current_path("/admin/applications/#{@application1.id}")
     expect(page).to have_content("#{@pet_1.name} Approved ")
+    expect(page).to_not have_button("Approve #{@pet1.name}")
   end
 end
