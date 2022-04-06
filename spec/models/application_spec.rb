@@ -31,5 +31,12 @@ RSpec.describe Application, type: :model do
       @application1.update_status_pending
       expect(@application1.status).to eq('Pending')
     end
+
+    it 'updates status to approved' do
+      @application1.update_status_pending
+      expect(@application1.status).to eq('Pending')
+      @application1.approved
+      expect(@application1.status).to eq('Approved')
+    end
   end
 end
