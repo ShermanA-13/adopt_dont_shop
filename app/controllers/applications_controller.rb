@@ -15,10 +15,7 @@ class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:id])
     @pets = @application.pets
-    if params[:pet_name].present?
-      # binding.pry
-      @search_pets = Pet.search(params[:pet_name])
-    end
+    @search_pets = Pet.search(params[:pet_name]) if params[:pet_name].present?
 
     if params[:description]
       @application.update(description: params[:description])

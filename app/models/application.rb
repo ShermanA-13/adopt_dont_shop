@@ -15,4 +15,5 @@ class Application < ApplicationRecord
   def update_status_pending
     update({ status: 'Pending' })
   end
+
 end

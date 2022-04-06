@@ -31,5 +31,7 @@ RSpec.describe Application, type: :model do
       @application1.update_status_pending
       expect(@application1.status).to eq('Pending')
     end
+
+
   end
 end
