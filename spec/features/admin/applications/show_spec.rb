@@ -47,8 +47,8 @@ RSpec.describe 'admin::application#show page' do
   it 'denies pets if deny button is clicked and indication shows pet has been denied' do
     expect(page).to have_button("Deny #{@pet_3.name}")
     click_button("Deny #{@pet_3.name}")
-    expect(current_path).to eq("/admin/applications/#{@application_1.id}")
-    expect(page).to_not have_button("Deny #{@pet3.name}")
+    expect(current_path).to eq("/admin/applications/#{@application1.id}")
+    expect(page).to_not have_button("Deny #{@pet_3.name}")
     expect(page).to have_content("Denied Pets: #{@pet_3.name}")
   end
 end
